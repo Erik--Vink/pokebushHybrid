@@ -1,0 +1,25 @@
+<!--<ion-tabs class="tabs-striped tabs-top tabs-background-stable">-->
+
+  <!--<ion-tab title="Page 1" ui-sref="tabs.about.page1">-->
+    <!--<ion-nav-view name="about-page1"></ion-nav-view>-->
+  <!--</ion-tab>-->
+
+  <!--<ion-tab title="Page 2" ui-sref="tabs.about.page2">-->
+    <!--<ion-nav-view name="about-page2"></ion-nav-view>-->
+  <!--</ion-tab>-->
+
+<!--</ion-tabs>-->
+<ion-view title="Search" hide-back-button="true">
+  <ion-content padding="true" class="has-header">
+
+    <h1>Pokemons</h1>
+
+    <ion-list>
+      <ion-item class="item-thumbnail-left" ng-repeat="pokemon in pokemons">
+        <img src="{{pokemon.image}}">
+        {{pokemon.name}}
+      </ion-item>
+    </ion-list>
+
+  </ion-content>
+</ion-view>

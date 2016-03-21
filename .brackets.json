@@ -1,0 +1,6 @@
+{
+    "jscodehints.detectedExclusions": [
+        "C:/Users/Erik/Documents/GitHub/pokebushHybrid/plugins/cordova-plugin-device/src/ubuntu/device.js",
+        "C:/Users/Erik/Documents/GitHub/pokebushHybrid/plugins/cordova-plugin-splashscreen/src/tizen/SplashScreenProxy.js"
+    ]
+}
