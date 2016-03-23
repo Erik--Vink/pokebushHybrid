@@ -45,7 +45,7 @@ app.config(function($stateProvider, $urlRouterProvider){
     .state('search.pokemon', {
       url: '/pokemon',
       views: {
-        'search-list': {
+        'search-pokemon': {
           templateUrl: 'app/search/searchPokemon.html',
           controller: 'SearchPokemonCtrl'
         }
@@ -54,7 +54,7 @@ app.config(function($stateProvider, $urlRouterProvider){
     .state('search.area', {
       url: '/area',
       views: {
-        'search-list': {
+        'search-area': {
           templateUrl: 'app/search/searchArea.html',
           controller: 'SearchAreaCtrl'
         }

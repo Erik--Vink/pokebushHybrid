@@ -6,6 +6,7 @@ searchControllers.controller('SearchPokemonCtrl', ['$scope', '$http', function (
     $scope.pokemons = data;
   });
 
+
 }]);
 
 searchControllers.controller('SearchAreaCtrl', ['$scope', '$http', function ($scope, $http){

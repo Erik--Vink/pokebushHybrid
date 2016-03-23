@@ -1,28 +1,45 @@
 <ion-view title="Search">
-
-  <div class="tabs-striped tabs-top tabs-background-stable">
-    <div class="tabs">
-      <a class="tab-item" ui-sref="search.pokemon">
-        Pokemons
-      </a>
-      <a class="tab-item" ui-sref="search.area">
-        Area
-      </a>
-    </div>
-  </div>
-
-  <!--<ion-tabs class="tabs-striped tabs-top tabs-background-stable">
-
-      <ion-tab title="Page 1" ui-sref="tabs.about.page1">
-
-      </ion-tab>
-
-      <ion-tab title="Page 2" ui-sref="tabs.about.page2">
-
-      </ion-tab>
-
-  </ion-tabs>-->
-
-  <ui-view name="search-list"></ui-view>
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon"
+            menu-toggle="left">
+    </button>
+  </ion-nav-buttons>
+  <ion-tabs class="tabs-top">
+    <ion-tab title="Pokemon" ui-sref="search.pokemon" ui-sref-active="active">
+      <ion-nav-view name="search-pokemon"></ion-nav-view>
+    </ion-tab>
+    <ion-tab title="Area" ui-sref="search.area" ui-sref-active="active">
+      <ion-nav-view name="search-area"></ion-nav-view>
+    </ion-tab>
+  </ion-tabs>
 
 </ion-view>
+
+<!--<ion-view title="Search">&ndash;&gt;-->
+
+  <!--<div class="tabs-striped tabs-top tabs-background-stable">-->
+  <!--<div class="tabs">-->
+  <!--<a class="tab-item" ui-sref="search.pokemon" ui-sref-active="active">-->
+  <!--Pokemons-->
+  <!--</a>-->
+  <!--<a class="tab-item" ui-sref="search.area" ui-sref-active="active">-->
+  <!--Area-->
+  <!--</a>-->
+  <!--</div>-->
+  <!--</div>-->
+
+  <!--&lt;!&ndash;<ion-tabs class="tabs-striped tabs-top tabs-background-stable">-->
+
+  <!--<ion-tab title="Page 1" ui-sref="tabs.about.page1">-->
+
+  <!--</ion-tab>-->
+
+  <!--<ion-tab title="Page 2" ui-sref="tabs.about.page2">-->
+
+  <!--</ion-tab>-->
+
+  <!--</ion-tabs>&ndash;&gt;-->
+
+  <!--<ui-view name="search-list"></ui-view>-->
+
+  <!--</ion-view>
