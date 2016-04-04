@@ -1,3 +1,5 @@
-var bushControllers = angular.module('bushControllers', []);
+var bushControllers = angular.module('bushCtrl',[]);
 
-bushControllers.controller('')
+bushControllers.controller('BushController', ['$scope','Pokemon', function($scope, Pokemon){
+
+}]);

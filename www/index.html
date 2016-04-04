@@ -14,13 +14,25 @@
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/angularjs/1.5.0/angular-resource.min.js"></script>
+
+    <!--<script src="https://cdn.jsdelivr.net/angularjs/1.5.0/angular-route.min.js"></script>-->
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
-    <script src="app/app.js"></script>
+    <script src="app/services/authorization.service.js"></script>
+    <script src="app/services/resource.service.js"></script>
+    <script src="app/services/pokemon.service.js"></script>
+
+    <script src="app/bush/bush.controllers.js"></script>
+    <script src="app/auth/auth.controllers.js"></script>
     <script src="app/search/search.controllers.js"></script>
+
+    <script src="app/app.routes.js"></script>
+    <script src="app/app.module.js"></script>
+
   </head>
   <body ng-app="app">
 

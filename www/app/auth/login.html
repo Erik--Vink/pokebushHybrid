@@ -1,0 +1,29 @@
+<ion-view title="Login">
+    <ion-content padding="true" scroll="false" class="has-header">
+      <form ng-submit="logIn()">
+        <ion-list>
+          <label class="item item-input">
+            <span class="input-label">Email</span>
+            <input type="text"
+                   name="email"
+                   class="form-control"
+                   placeholder="Email"
+                   ng-model="user.email"/>
+          </label>
+          <label class="item item-input">
+            <span class="input-label">Password</span>
+            <input type="password"
+                   name="password"
+                   class="form-control"
+                   placeholder="Password"
+                   ng-model="user.password"/>
+          </label>
+        </ion-list>
+        <div class="spacer" style="width: 300px; height: 17px;"></div>
+        <button type="submit" class="button button-block button-positive">
+          Log in
+        </button>
+        <!--<a href="#/my-dinners" class="button button-light button-block">Log in</a>-->
+      </form>
+    </ion-content>
+</ion-view>

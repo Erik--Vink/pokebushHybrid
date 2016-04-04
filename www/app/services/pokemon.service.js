@@ -1,12 +1,14 @@
-(function(){
-  angular.module('app', []);
-})();
-
-(function(){
-  "use strict";
-  angular.module('app')
-    .controller('bushController', ['dep1', function(dep1){
-
-
-    }])
-})();
+angular.module('PokemonService', []).factory('Pokemon', ['Resource', 'baseApiUrl', function($resource, baseApiUrl){
+  return {
+    get: function(params) {
+      return $resource(baseApiUrl + 'pokemon').get({page:params.page});
+    }
+    //,
+    //addArea: function(pokemon,area) {
+    //  return $resource(baseApiUrl + 'pokemon/'+pokemon.lowerName+"/area/"+area.canonicalName).update(area);
+    //},
+    //deleteArea: function(pokemon,area) {
+    //  return $resource(baseApiUrl + 'pokemon/'+pokemon.lowerName+"/area/"+area.canonicalName).delete();
+    //}
+  }
+}]);

@@ -64,6 +64,6 @@ app.config(function($stateProvider, $urlRouterProvider){
 
   $urlRouterProvider.otherwise('/login');
 
-
+  $stateProvider.html5Mode(true);
 
 });
