@@ -12,6 +12,7 @@ app.config(function($stateProvider, $urlRouterProvider){
     .state('bush', {
       access: {restricted: true},
       url:'/bush',
+      controller: 'BushController',
       templateUrl: 'app/bush/bush.html'
     })
     .state('search', {

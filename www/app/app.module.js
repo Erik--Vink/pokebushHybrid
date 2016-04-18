@@ -9,7 +9,8 @@ var app = angular.module('app', [
   'ResourceService',
   'authCtrl',
   'bushCtrl',
-  'searchCtrl'
+  'searchCtrl',
+  'alertDirective'
 ]);
 
 app.constant('baseApiUrl', "https://powerful-depths-54671.herokuapp.com/api/");
@@ -53,3 +54,5 @@ app.run(function ($rootScope, $location, Auth, Pokemon, $http, $window, $cookies
     //        //Auth.getUserStatus(); // Determine if the user needs to be redirected
     //    });
 });
+
+

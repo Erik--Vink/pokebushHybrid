@@ -1,5 +1,6 @@
 <ion-view title="Bush" hide-back-button="true">
   <ion-content padding="true" class="has-header">
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
     <div class="list card">
       <div class="item item-divider">My First Dinner</div>
       <div class="item item-body">
@@ -12,4 +13,4 @@
       </div>
     </div>
   </ion-content>
-</ion-view>
+</ion-view><!-->
