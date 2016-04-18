@@ -1,7 +1,7 @@
 angular.module('PokemonService', []).factory('Pokemon', ['Resource', 'baseApiUrl', function($resource, baseApiUrl){
   return {
     get: function(params) {
-      return $resource(baseApiUrl + 'pokemon').get({page:params.page});
+      return $resource(baseApiUrl + 'pokemon').get();
     }
     //,
     //addArea: function(pokemon,area) {

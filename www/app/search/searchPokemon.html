@@ -8,7 +8,7 @@
     <ion-content padding="true" class="has-header" has-tabs="true">
         <ion-list>
             <ion-item class="item-thumbnail-left" ng-repeat="pokemon in pokemons | filter:{name: search}">
-                <img src="{{pokemon.image}}">
+                <img ng-src="{{pokemon.imagePath}}">
                 {{pokemon.name}}
             </ion-item>
         </ion-list>

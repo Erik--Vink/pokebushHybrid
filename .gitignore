@@ -48,3 +48,7 @@ Temporary Items
 
 # IDEA
 .idea
+/node_modules
+lib
+platforms
+/www/lib

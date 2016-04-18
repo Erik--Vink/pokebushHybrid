@@ -4,20 +4,24 @@ app.config(function($stateProvider, $urlRouterProvider){
 
   $stateProvider
     .state('login', {
+      access: {restricted: false},
       url:'/login',
       controller: 'AuthorizationController',
       templateUrl: 'app/auth/login.html'
     })
     .state('bush', {
+      access: {restricted: true},
       url:'/bush',
       templateUrl: 'app/bush/bush.html'
     })
     .state('search', {
+      access: {restricted: true},
       url:'/search',
       abstract: true,
       templateUrl: 'app/search/search.html'
     })
     .state('search.pokemon', {
+      access: {restricted: true},
       url: '/pokemon',
       views: {
         'search-pokemon': {
@@ -27,6 +31,7 @@ app.config(function($stateProvider, $urlRouterProvider){
       }
     })
     .state('search.area', {
+      access: {restricted: true},
       url: '/area',
       views: {
         'search-area': {

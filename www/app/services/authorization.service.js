@@ -1,53 +1,70 @@
-angular.module('AuthorizationService', []).factory('Auth', ['$resource', '$location', 'baseUrl', function($resource, $location, baseUrl){
-    var auth = {};
-    var self = this;
-    var user = null;
+angular.module('AuthorizationService', []).factory('Auth', ['Resource', '$location', '$http', '$window',  'baseUrl', function($resource, $location, $http, $window, baseUrl){
+  var auth = {};
+  var self = this;
+  var user = null;
 
-    auth.isLoggedIn = function(){
-        if(self.user) {
-            return true;
-        } else {
-            return false;
-        }
-    };
+  this.getToken = function(){
+    return $window.localStorage['x-access-token'];
+  };
 
-    auth.currentUser = function(){
-        if(auth.isLoggedIn()){
-            return self.user;
-        }
-    };
+  this.setToken = function(token) {
+    $window.localStorage['x-access-token'] = token;
+  };
 
-    auth.logIn = function(user){
-        return $resource(baseUrl + 'auth/login').save(user,function(user){
-            self.user = user;
-        });
-    };
+  auth.isLoggedIn = function(){
+    return $window.localStorage['x-access-token'] != null;
+  };
 
-    auth.logOut = function(){
-        return $resource(baseUrl + 'auth/logout').get(function(){
-            self.user = null;
-        });
-    };
+  auth.currentUser = function(){
+    if(auth.isLoggedIn()){
+      return self.user;
+    }
+  };
 
-    auth.signUp = function(user){
-        return $resource(baseUrl + 'auth/signup').save(user);
-    };
+  auth.logIn = function(user){
+    return $resource(baseUrl + 'auth/login').save(user,function(data){
+      if(data.token){
+        self.setToken(data.token);
+        $http.defaults.headers.common['x-access-token']= data.token;
+      }
+    });
+  };
 
-   auth.getUserStatus = function() {
+  auth.logOut = function(){
+    $window.localStorage.removeItem('x-access-token');
+  };
 
-       $resource(baseUrl + 'auth').get(function(user){
-           if(user){
-               self.user = user;
-           } else {
-               self.user = null;
-           }
-       }, function(){
-           self.user = null;
-       });
+  auth.signUp = function(user){
+    return $resource(baseUrl + 'auth/signup').save(user, function(data){
+      if(data.token){
+        self.setToken(data.token);
+        $http.defaults.headers.common['x-access-token']= data.token;
+      }
+    });
+  };
 
-       return $resource(baseUrl + 'user').get();
+  auth.getUserStatus = function() {
 
-    };
+    $resource(baseUrl + 'auth/user').get(function(user){
+      if(user){
+        self.user = user;
+      } else {
+        self.user = null;
+      }
+    }, function(error){
+      self.user = null;
+    });
 
-    return auth;
+    return $resource('auth/user', {}, {
+      get: {
+        method: 'GET',
+        isArray: false
+      }
+    });
+
+    //return $resource(baseUrl + 'auth/user').get();
+
+  };
+
+  return auth;
 }]);
