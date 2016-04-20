@@ -17,8 +17,6 @@
     <script src="https://cdn.jsdelivr.net/angularjs/1.5.0/angular-resource.min.js"></script>
     <script src="lib/angular-cookies/angular-cookies.min.js"></script>
 
-    <!--<script src="https://cdn.jsdelivr.net/angularjs/1.5.0/angular-route.min.js"></script>-->
-
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
@@ -29,9 +27,10 @@
 
     <script src="app/directives/alert.directive.js"></script>
 
-    <script src="app/bush/bush.controllers.js"></script>
-    <script src="app/auth/auth.controllers.js"></script>
-    <script src="app/search/search.controllers.js"></script>
+    <script src="app/bush/bush.controller.js"></script>
+    <script src="app/profile/profile.controller.js"></script>
+    <script src="app/auth/auth.controller.js"></script>
+    <script src="app/search/search.controller.js"></script>
 
     <script src="app/app.routes.js"></script>
     <script src="app/app.module.js"></script>
@@ -47,6 +46,10 @@
         <a class="tab-item" ui-sref="bush" ui-sref-active="active" nav-transition="none">
           <i class="icon ion-map"></i>
           Bush
+        </a>
+        <a class="tab-item" ui-sref="profile" ui-sref-active="active" nav-transition="none">
+          <i class="icon ion-person"></i>
+          Profile
         </a>
         <a class="tab-item" ui-sref="search.pokemon" ui-sref-active="active" nav-transition="none">
           <i class="icon ion-search"></i>

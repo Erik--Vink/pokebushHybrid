@@ -4,48 +4,42 @@ app.config(function($stateProvider, $urlRouterProvider){
 
   $stateProvider
     .state('login', {
-      access: {restricted: false},
       url:'/login',
       controller: 'AuthorizationController',
-      templateUrl: 'app/auth/login.html'
+      templateUrl: 'app/auth/login.html',
+      authenticate: false
+
     })
     .state('bush', {
-      access: {restricted: true},
       url:'/bush',
       controller: 'BushController',
-      templateUrl: 'app/bush/bush.html'
+      templateUrl: 'app/bush/bush.html',
+      authenticate: true
+    })
+    .state('profile', {
+      url:'/profile',
+      controller: 'ProfileController',
+      templateUrl: 'app/profile/profile.html',
+      authenticate: true
     })
     .state('search', {
-      access: {restricted: true},
       url:'/search',
-      abstract: true,
-      templateUrl: 'app/search/search.html'
+      templateUrl: 'app/search/search.html',
+      controller: 'SearchController',
+      authenticate: true
     })
     .state('search.pokemon', {
-      access: {restricted: true},
       url: '/pokemon',
-      views: {
-        'search-pokemon': {
-          templateUrl: 'app/search/searchPokemon.html',
-          controller: 'SearchPokemonController'
-        }
-      }
+      templateUrl: 'app/search/searchPokemon.html',
+      authenticate: true
     })
     .state('search.area', {
-      access: {restricted: true},
       url: '/area',
-      views: {
-        'search-area': {
-          templateUrl: 'app/search/searchArea.html',
-          controller: 'SearchAreaController'
-        }
-      }
+      templateUrl: 'app/search/searchArea.html',
+      authenticate: true
     });
-  ;
 
   $urlRouterProvider.otherwise('/login');
-
-
 
 });
 

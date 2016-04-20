@@ -1,6 +1,6 @@
-var bushControllers = angular.module('bushCtrl',[]);
+var module = angular.module('profileCtrl',[]);
 
-bushControllers.controller('BushController', ['$scope','Pokemon', function($scope, Pokemon){
+module.controller('ProfileController', ['$scope','Pokemon', function($scope, Pokemon){
 
   $scope.alerts = [
     { type: 'warning', msg: 'Error! Change a few things and try again.' },
