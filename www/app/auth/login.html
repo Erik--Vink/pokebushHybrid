@@ -1,7 +1,9 @@
-<ion-view title="Login" hide-tabs='true' hide-back-button="true">
+<ion-view hide-tabs='true' hide-back-button="true" hide-nav-bar="true" class="login-background">
     <ion-content padding="true" scroll="false" class="has-header">
 
-      <alert ng-show="alert" ng-model="alert" type="{{alert.type}}" close="closeAlert()">{{alert.msg}}</alert>
+      <div class="alert-spacer">
+        <alert ng-show="alert" ng-model="alert" type="{{alert.type}}" close="closeAlert()">{{alert.msg}}</alert>
+      </div>
 
       <form ng-submit="logIn()">
         <ion-list>
@@ -23,7 +25,7 @@
           </label>
         </ion-list>
         <div class="spacer" style="width: 300px; height: 17px;"></div>
-        <button type="submit" class="button button-block button-positive">
+        <button type="submit" class="button button-block button-light">
           Log in
         </button>
         <!--<a href="#/my-dinners" class="button button-light button-block">Log in</a>-->

@@ -14,6 +14,12 @@ app.config(function($stateProvider, $urlRouterProvider){
       templateUrl: 'app/bush/bush.html',
       authenticate: true
     })
+    .state('mypokemon', {
+      url:'/mypokemon',
+      controller: 'MypokemonController',
+      templateUrl: 'app/mypokemon/mypokemon.html',
+      authenticate: true
+    })
     .state('profile', {
       url:'/profile',
       controller: 'ProfileController',

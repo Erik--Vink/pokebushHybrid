@@ -1,5 +1,6 @@
 var app = angular.module('app', [
   'ionic',
+  'ngCordova',
   'ngResource',
   'ngCookies',
   'ResourceService',
@@ -9,6 +10,7 @@ var app = angular.module('app', [
   'ResourceService',
   'authCtrl',
   'bushCtrl',
+  'mypokemonCtrl',
   'profileCtrl',
   'searchCtrl',
   'app.directives',

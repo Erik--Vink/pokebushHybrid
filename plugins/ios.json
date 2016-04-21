@@ -8,7 +8,14 @@
     },
     "installed_plugins": {
         "cordova-plugin-splashscreen": {},
-        "cordova-plugin-device": {}
+        "cordova-plugin-device": {},
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.ionicframework.pokebushhybrid934950"
+        }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.ionicframework.pokebushhybrid934950"
+        }
+    }
 }
