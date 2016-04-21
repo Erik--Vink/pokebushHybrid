@@ -1,20 +1,23 @@
 var authControllers = angular.module('authCtrl',[]);
 
-authControllers.controller('AuthorizationController', ['$scope', 'Auth', '$location', function($scope, Auth, $location){
+authControllers.controller('AuthorizationController', ['$scope', 'Auth', '$state', function($scope, Auth, $state){
 
   $scope.user = {};
 
+  $scope.closeAlert = function(){
+    $scope.alert = null;
+  };
+
   $scope.logIn = function(){
     Auth.logIn($scope.user).$promise.then(function(data){
-      console.log(data);
-      //$location.path('bush');
+      $state.transitionTo("bush");
     },function(error){
-      console.log(error);
       if(error.data.message){
-        $scope.error = error.data.message;
+        $scope.alert = { type: 'warning', msg: error.data.message };
+        console.log($scope.alert);
       }
       else{
-        $scope.error = error.data.loginMessage;
+        $scope.alert = { type: 'warning', msg: error.data.loginMessage };
       }
     });
   };

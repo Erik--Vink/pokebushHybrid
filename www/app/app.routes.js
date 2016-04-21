@@ -6,9 +6,7 @@ app.config(function($stateProvider, $urlRouterProvider){
     .state('login', {
       url:'/login',
       controller: 'AuthorizationController',
-      templateUrl: 'app/auth/login.html',
-      authenticate: false
-
+      templateUrl: 'app/auth/login.html'
     })
     .state('bush', {
       url:'/bush',

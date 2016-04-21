@@ -26,10 +26,11 @@
     <script src="app/services/pokemon.service.js"></script>
 
     <script src="app/directives/alert.directive.js"></script>
+    <script src="app/directives/hideTabs.directive.js"></script>
 
+    <script src="app/auth/auth.controller.js"></script>
     <script src="app/bush/bush.controller.js"></script>
     <script src="app/profile/profile.controller.js"></script>
-    <script src="app/auth/auth.controller.js"></script>
     <script src="app/search/search.controller.js"></script>
 
     <script src="app/app.routes.js"></script>
@@ -42,7 +43,8 @@
         <ion-nav-back-button></ion-nav-back-button>
       </ion-nav-bar>
       <ion-nav-view></ion-nav-view>
-      <div class="tabs tabs-icon-top" >
+
+      <div ng-class="{'tabs-item-hide': $root.hideTabs}" class="tabs tabs-icon-top" >
         <a class="tab-item" ui-sref="bush" ui-sref-active="active" nav-transition="none">
           <i class="icon ion-map"></i>
           Bush
@@ -56,8 +58,6 @@
           Search
         </a>
       </div>
-
-
 
   </body>
 </html>
