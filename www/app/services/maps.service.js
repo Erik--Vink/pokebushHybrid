@@ -9,40 +9,56 @@ angular.module('MapsService', []).factory('Map', ['$cordovaGeolocation', 'Marker
     var options = {timeout: 10000, enableHighAccuracy: true};
 
     $cordovaGeolocation.getCurrentPosition(options).then(function(position){
+        var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-      var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        var mapOptions = {
+          center: latLng,
+          zoom: 15,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
 
-      var mapOptions = {
-        center: latLng,
-        zoom: 15,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      };
-
-      map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
-      //Wait until the map is loaded
-      google.maps.event.addListenerOnce(map, 'idle', function(){
-
-        //Load the markers
-        loadMarkers();
-
-        //TODO: fix the currentPosMarker
-        currentPosMarker = new google.maps.Marker({
-          map: map,
-          icon: {
-            path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
-            scale: 5
-          },
-          position: latLng
+        map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        //Load map
+        google.maps.event.addListenerOnce(map, 'idle', function(){
+          //Load the markers
+          loadMarkers();
         });
-      });
-
-    }, function(error){
-      console.log("Could not get location");
-
-      //Load the markers
-      loadMarkers();
     });
+
+
+
+
+
+
+    //$cordovaGeolocation.getCurrentPosition({timeout: 10000, enableHighAccuracy: true}).then(function(position){
+    //
+    //  var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    //
+    //  var mapOptions = {
+    //    center: latLng,
+    //    zoom: 15,
+    //    mapTypeId: google.maps.MapTypeId.ROADMAP
+    //  };
+    //
+    //}, function(error){
+    //});
+
+    //Draw current positionMarker
+    //Watch current positionMarker
+
+
+
+    ////TODO: fix the currentPosMarker
+    //currentPosMarker = new google.maps.Marker({
+    //  map: map,
+    //  icon: {
+    //    path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+    //    scale: 5
+    //  },
+    //  position: latLng
+    //});
+
+
 
     $cordovaGeolocation.watchPosition({
       timeout : 3000,
@@ -50,12 +66,27 @@ angular.module('MapsService', []).factory('Map', ['$cordovaGeolocation', 'Marker
     }).then(null, function(error) {
         console.log('Error w/ watchPosition: ' + error);
       }, function(position) {
+      console.log(position);
       var lat         = position.coords.latitude,
       long            = position.coords.longitude,
       currentLocation = new google.maps.LatLng(lat, long);
-      currentPosMarker.setPosition(currentLocation);
+      if(currentPosMarker){
+        currentPosMarker.setPosition(currentLocation);
+      }
+      else{
+        currentPosMarker = new google.maps.Marker({
+          map: map,
+          icon: {
+            path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+            scale: 5
+          },
+          position: currentLocation
+        });
+      }
 
       console.log('assigning your new position');
+      console.log(lat);
+      console.log(long);
 
     });
   }
