@@ -25,70 +25,39 @@ angular.module('MapsService', []).factory('Map', ['$cordovaGeolocation', 'Marker
         });
     });
 
-
-
-
-
-
-    //$cordovaGeolocation.getCurrentPosition({timeout: 10000, enableHighAccuracy: true}).then(function(position){
-    //
-    //  var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-    //
-    //  var mapOptions = {
-    //    center: latLng,
-    //    zoom: 15,
-    //    mapTypeId: google.maps.MapTypeId.ROADMAP
-    //  };
-    //
-    //}, function(error){
-    //});
-
-    //Draw current positionMarker
-    //Watch current positionMarker
-
-
-
-    ////TODO: fix the currentPosMarker
-    //currentPosMarker = new google.maps.Marker({
-    //  map: map,
-    //  icon: {
-    //    path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
-    //    scale: 5
-    //  },
-    //  position: latLng
-    //});
-
-
-
-    $cordovaGeolocation.watchPosition({
+    var watchOptions = {
       timeout : 3000,
-      enableHighAccuracy: false
-    }).then(null, function(error) {
-        console.log('Error w/ watchPosition: ' + error);
-      }, function(position) {
-      console.log(position);
-      var lat         = position.coords.latitude,
-      long            = position.coords.longitude,
-      currentLocation = new google.maps.LatLng(lat, long);
-      if(currentPosMarker){
-        currentPosMarker.setPosition(currentLocation);
-      }
-      else{
-        currentPosMarker = new google.maps.Marker({
-          map: map,
-          icon: {
-            path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
-            scale: 5
-          },
-          position: currentLocation
-        });
-      }
+      enableHighAccuracy: false // may cause errors if true
+    };
 
-      console.log('assigning your new position');
-      console.log(lat);
-      console.log(long);
+    var watch = $cordovaGeolocation.watchPosition(watchOptions);
+    watch.then(
+      null,
+      function(err) {
+        // error
+      },
+      function(position) {
+        console.log(position);
+        var lat = position.coords.latitude;
+        var long = position.coords.longitude;
+        console.log(lat);
+        console.log(long);
+        var currentLocation = new google.maps.LatLng(lat, long);
 
-    });
+        if(currentPosMarker){
+          currentPosMarker.setPosition(currentLocation);
+        }
+        else{
+          currentPosMarker = new google.maps.Marker({
+            map: map,
+            icon: {
+              path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+              scale: 5
+            },
+            position: currentLocation
+          });
+        }
+      });
   }
 
   function loadMarkers(){
