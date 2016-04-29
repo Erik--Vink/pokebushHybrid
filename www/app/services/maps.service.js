@@ -1,53 +1,46 @@
-angular.module('MapsService', []).factory('Map', ['$cordovaGeolocation', 'Marker', function($cordovaGeolocation, Marker){
-  var apiKey = false;
+angular.module('MapsService', []).factory('Map', ['$cordovaGeolocation', 'Marker', function ($cordovaGeolocation, Marker) {
   var map = null;
-
   var currentPosMarker;
+  var rad = Math.PI / 180;
 
-  function initMap(){
+  function initMap() {
 
     var options = {timeout: 10000, enableHighAccuracy: true};
 
-    $cordovaGeolocation.getCurrentPosition(options).then(function(position){
-        var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
+      var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-        var mapOptions = {
-          center: latLng,
-          zoom: 15,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
+      var mapOptions = {
+        center: latLng,
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
 
-        map = new google.maps.Map(document.getElementById("map"), mapOptions);
-        //Load map
-        google.maps.event.addListenerOnce(map, 'idle', function(){
-          //Load the markers
-          loadMarkers();
-        });
+      map = new google.maps.Map(document.getElementById("map"), mapOptions);
+      //Load map
+      google.maps.event.addListenerOnce(map, 'idle', function () {
+        //Load the markers
+        loadMarkers();
+      });
     });
 
     var watchOptions = {
-      timeout : 3000,
+      timeout: 3000,
       enableHighAccuracy: false // may cause errors if true
     };
 
     var watch = $cordovaGeolocation.watchPosition(watchOptions);
     watch.then(
       null,
-      function(err) {
-        // error
-      },
-      function(position) {
-        console.log(position);
+      function (err) { /* Error: do nothing. */ },
+      function (position) {
         var lat = position.coords.latitude;
         var long = position.coords.longitude;
-        console.log(lat);
-        console.log(long);
         var currentLocation = new google.maps.LatLng(lat, long);
 
-        if(currentPosMarker){
+        if (currentPosMarker) {
           currentPosMarker.setPosition(currentLocation);
-        }
-        else{
+        } else {
           currentPosMarker = new google.maps.Marker({
             map: map,
             icon: {
@@ -57,13 +50,47 @@ angular.module('MapsService', []).factory('Map', ['$cordovaGeolocation', 'Marker
             position: currentLocation
           });
         }
+
+        closest(200, function (closest, err) {
+          console.log(closest);
+        });
       });
   }
 
-  function loadMarkers(){
+  var calls = 0;
+  function closest(range, callback){
+    Marker.getMarkers().then(function(markers){
+      calls++;
+      console.log(calls);
+      var closestDistance = null;
+      console.log(markers);
+      var closest = _.reduce(markers, function (collector, marker) {
+        var currentDistance = dist(currentPosMarker.position.lat(), currentPosMarker.position.lng(), marker.lat, marker.long);
+        if(collector == null || currentDistance < closestDistance) {
+          closestDistance = currentDistance;
+          return marker;
+        } else { return collector; }
+      }, null);
+      if(closestDistance <= range) {
+        callback(closest);
+      } else {
+        callback(null);
+      }
+    });
+  }
+
+  function dist(latA, longA, latB, longB){
+    var a = 0.5 - Math.cos(Math.abs(latA - latB) * rad)/2 +
+      Math.cos(latA * rad) * Math.cos(latB * rad) *
+      (1 - Math.cos((longA - longB) * rad))/2;
+
+    return 12742000 * Math.asin(Math.sqrt(a));
+  }
+
+  function loadMarkers() {
 
     //Get all of the markers from our Marker factory
-    Marker.getMarkers().then(function(markers){
+    Marker.getMarkers().then(function (markers) {
       var records = markers;
 
       for (var i = 0; i < records.length; i++) {
@@ -95,62 +122,8 @@ angular.module('MapsService', []).factory('Map', ['$cordovaGeolocation', 'Marker
     });
   }
 
-  function initLocationProcedure() {
-    initializeMap();
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        errorCallback_highAccuracy,
-        {maximumAge:600000, timeout:5000, enableHighAccuracy: true});
-    } else {
-      alert("Your Phone does not support Geolocation");
-    }
-  }
-
-  function displayAndWatch(position) {
-    // set current position
-    setCurrentPosition(position);
-    // watch position
-    watchCurrentPosition();
-  }
-
-  function errorCallback_highAccuracy(position) {
-  }
-
-  function watchCurrentPosition() {
-    var positionTimer = navigator.geolocation.watchPosition(
-      function (position) { setMarkerPosition(currentPositionMarker,position);
-      }, error, {maximumAge:600000, timeout:5000, enableHighAccuracy: true});
-  }
-  function error(){
-  }
-
-  function setMarkerPosition(marker, position) {
-    marker.setPosition(
-      new plugin.google.maps.LatLng(
-        position.coords.latitude,
-        position.coords.longitude)
-
-    );
-  }
-
-  function setCurrentPosition(pos) {
-    currentPositionMarker = map.addMarker({
-      'position': new plugin.google.maps.LatLng(
-        pos.coords.latitude,
-        pos.coords.longitude
-      )
-
-    }, function(marker) {
-      currentPositionMarker = marker;
-    });
-    map.setCenter(new plugin.google.maps.LatLng(
-      pos.coords.latitude,
-      pos.coords.longitude
-    ));
-  };
-
   return {
-    init: function(){
+    init: function () {
       initMap();
     }
   }

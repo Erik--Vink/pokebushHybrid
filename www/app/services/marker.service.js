@@ -1,4 +1,4 @@
-angular.module('MarkerService', []).factory('Marker', ['Resource', 'baseApiUrl', 'Area', function($resource, baseApiUrl, Area){
+angular.module('MarkerService', []).factory('Marker', ['Resource', 'baseApiUrl', 'Area', '$q', function($resource, baseApiUrl, Area, $q){
   var markers = [];
 
   return {
@@ -10,9 +10,8 @@ angular.module('MarkerService', []).factory('Marker', ['Resource', 'baseApiUrl',
           });
           return markers;
         });
-      }
-      else{
-        return markers;
+      } else {
+        return $q.when(markers);
       }
     },
     getMarker: function(id) {
