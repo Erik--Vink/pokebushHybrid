@@ -1,4 +1,4 @@
-angular.module('MapsService', []).factory('Map', ['$cordovaGeolocation', 'Marker', function ($cordovaGeolocation, Marker) {
+angular.module('MapsService', []).factory('Map', ['$cordovaGeolocation', 'Marker', 'Catch', function ($cordovaGeolocation, Marker, Catch) {
   var map = null;
   var currentPosMarker;
   var rad = Math.PI / 180;
@@ -51,8 +51,8 @@ angular.module('MapsService', []).factory('Map', ['$cordovaGeolocation', 'Marker
           });
         }
 
-        closest(200, function (closest, err) {
-          console.log(closest);
+        closest(200, function (closest) {
+          Catch.zone(closest);
         });
       });
   }
@@ -60,8 +60,6 @@ angular.module('MapsService', []).factory('Map', ['$cordovaGeolocation', 'Marker
   var calls = 0;
   function closest(range, callback){
     Marker.getMarkers().then(function(markers){
-      calls++;
-      console.log(calls);
       var closestDistance = null;
       console.log(markers);
       var closest = _.reduce(markers, function (collector, marker) {
