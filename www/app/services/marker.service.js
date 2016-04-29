@@ -1,11 +1,13 @@
 angular.module('MarkerService', []).factory('Marker', ['Resource', 'baseApiUrl', 'Area', '$q', function($resource, baseApiUrl, Area, $q){
-  var markers = [];
+  var markers = null;
 
   return {
     getMarkers: function() {
-      if(markers.length <1){
+      if(markers == null) {
+        markers = [];
         return Area.get().$promise.then(function(response){
           response.forEach(function(area){
+            console.log("push -> " + area.name);
             markers.push(area);
           });
           return markers;
