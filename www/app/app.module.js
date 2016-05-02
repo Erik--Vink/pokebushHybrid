@@ -17,6 +17,7 @@ var app = angular.module('app', [
   'profileCtrl',
   'searchCtrl',
   'pokemonCtrl',
+  'areaCtrl',
   'app.directives',
   'alertDirective',
   'CatchService'

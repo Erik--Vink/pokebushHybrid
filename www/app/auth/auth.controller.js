@@ -14,7 +14,6 @@ authControllers.controller('AuthorizationController', ['$scope', 'Auth', '$state
     },function(error){
       if(error.data.message){
         $scope.alert = { type: 'warning', msg: error.data.message };
-        console.log($scope.alert);
       }
       else{
         $scope.alert = { type: 'warning', msg: error.data.loginMessage };

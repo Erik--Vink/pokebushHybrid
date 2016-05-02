@@ -1,0 +1,24 @@
+<ion-view title="Area" hide-tabs='false' hide-back-button="false">
+    <ion-content has-tabs="true">
+      <div class="list card" ng-show="area">
+
+        <div class="item">
+          <h2><strong>{{area.name}}</strong></h2>
+        </div>
+
+        <div class="item item-body">
+            Catchable pokemon
+        </div>
+
+        <div class="item item-small item-thumbnail-left item-icon-right" ng-repeat="pokemon in area.pokemon" ui-sref="pokemon({name: pokemon.lowerName})">
+            <img ng-src="{{pokemon.imagePath}}" class="list-item-image">
+            <h2><strong>#{{pokemon.pokedexId}}</strong></h2>
+            <p>{{pokemon.name}}</p>
+            <i class="icon ion-chevron-right"></i>
+        </div>
+        <div class="item" ng-hide="area.pokemon.length > 0">
+          No pokemon can be found in this area.
+        </div>
+      </div>
+    </ion-content>
+</ion-view>

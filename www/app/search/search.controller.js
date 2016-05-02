@@ -14,7 +14,6 @@ searchController.controller('PokemonSearchController', ['$scope', '$state', 'Pok
 
   var getPokemons = function(){
     Pokemon.get(nextPageParams).$promise.then(function(data){
-      console.log(data);
       data.result.forEach(function(pokemon){
         $scope.pokemons.push(pokemon);
       });
@@ -40,8 +39,8 @@ searchController.controller('PokemonSearchController', ['$scope', '$state', 'Pok
       $scope.$broadcast('scroll.infiniteScrollComplete');
     });
   };
-  var timeout;
 
+  var timeout;
   $scope.filterPokemons = function(){
     if (timeout != null) {
       $timeout.cancel(timeout);
@@ -64,6 +63,23 @@ searchController.controller('PokemonSearchController', ['$scope', '$state', 'Pok
   $scope.$on('$stateChangeSuccess', function() {
     if($scope.pokemons.length <1){
       getPokemons();
+    }
+  });
+}]);
+
+searchController.controller('AreaSearchController', ['$scope', '$state', 'Area', function($scope, $state, Area){
+
+  $scope.areas = [];
+
+  var getAreas = function(){
+    Area.get().$promise.then(function(data){
+      $scope.areas = data;
+    });
+  };
+
+  $scope.$on('$stateChangeSuccess', function() {
+    if($scope.areas.length <1){
+      getAreas();
     }
   });
 }]);

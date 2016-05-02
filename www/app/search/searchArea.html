@@ -1,13 +1,21 @@
-<ion-view title="Search" hide-tabs='false' hide-back-button="true">
-  <ion-content padding="true" class="has-header">
-
-
-    <!--<ion-list>-->
-      <!--<ion-item class="item-thumbnail-left" ng-repeat="pokemon in pokemons">-->
-        <!--<img src="{{pokemon.image}}">-->
-        <!--{{pokemon.name}}-->
-      <!--</ion-item>-->
-    <!--</ion-list>-->
-
+<ion-view title="Search" hide-tabs='false' hide-back-button="true" ng-controller="AreaSearchController">
+  <ion-header-bar class="bar-subheader has-header">
+    <label class="item item-input">
+      <i class="icon ion-search placeholder-icon"></i>
+      <input type="text" placeholder="Search" ng-model="searchTerm">
+    </label>
+  </ion-header-bar>
+  <ion-content padding="true" class="has-search-header" has-tabs="true">
+    <ion-list>
+      <ion-item class="item item-icon-right item-small" collection-repeat="area in areas| filter:searchTerm" ui-sref="area({name: area.canonicalName, object: area })">
+        <h2><strong>{{area.name}}</strong></h2>
+        <i class="icon ion-chevron-right" style="max-height: 50px;"></i>
+      </ion-item>
+    </ion-list>
+    <ion-infinite-scroll
+      ng-if="moreAreasCanBeLoaded"
+      on-infinite="loadNextPage()"
+      distance="1%">
+    </ion-infinite-scroll>
   </ion-content>
 </ion-view>

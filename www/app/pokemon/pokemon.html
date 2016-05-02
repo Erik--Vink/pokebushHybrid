@@ -1,6 +1,6 @@
 <ion-view title="Pokemon" hide-tabs='false' hide-back-button="false">
-    <ion-content class="bottom-margin-small" padding="true" has-tabs="true">
-      <div class="list card">
+    <ion-content has-tabs="true">
+      <div class="list card" ng-show="pokemon">
 
         <div class="item">
           <h2><strong>#{{pokemon.pokedexId}} {{pokemon.name}}</strong></h2>
@@ -22,7 +22,7 @@
           <h2><strong>Can be found at</strong></h2>
         </div>
 
-        <div class="item item-icon-right" ng-repeat="area in pokemon.area" ui-sref="area({name:area.canonicalName, object:area})">
+        <div class="item item-icon-right" ng-repeat="area in pokemon.area" ui-sref="area({name:area.canonicalName})">
           {{area.name}}
           <i class="icon ion-chevron-right"></i>
         </div>

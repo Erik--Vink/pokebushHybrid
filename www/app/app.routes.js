@@ -47,68 +47,16 @@ app.config(function($stateProvider, $urlRouterProvider){
       templateUrl: 'app/pokemon/pokemon.html',
       controller: 'PokemonController',
       authenticate: true,
-      params: {'name': {}, 'object': {}}
+      params: {'name': {}, 'object': null}
+    })
+    .state('area', {
+      url: '/area/:name',
+      templateUrl: 'app/area/area.html',
+      controller: 'AreaController',
+      authenticate: true,
+      params: {'name': {}, 'object': null}
     });
 
   $urlRouterProvider.otherwise('/login');
 
 });
-
-
-
-//config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-
-
-
-    //$routeProvider
-    //
-    //    .when('/404', {
-    //        templateUrl: 'views/404.html',
-    //        access: {restricted: false}
-    //    })
-    //    .when('/', {
-    //        templateUrl: 'app/bush/bush.html',
-    //        controller: 'BushController',
-    //        access: {restricted: true}
-    //    })
-    //    .when('/signup', {
-    //        templateUrl: 'app/auth/signup.html',
-    //        controller: 'AuthorizationController',
-    //        access: {restricted: false}
-    //    })
-    //    .when('/login', {
-    //        templateUrl: 'app/auth/login.html',
-    //        controller: 'AuthorizationController',
-    //        access: {restricted: false}
-    //    })
-    //    .when('/bush', {
-    //        templateUrl: 'app/bush/bush.html',
-    //        controller: 'BushController',
-    //        access: {restricted: true}
-    //    })
-    //    .when('/mypokemon', {
-    //        templateUrl: 'app/user/mypokemon.html',
-    //        controller: 'MypokemonController',
-    //        access: {restricted: true}
-    //    })
-    //    .when('/myprofile', {
-    //        templateUrl: 'app/user/myprofile.html',
-    //        controller: 'MyprofileController',
-    //        access: {restricted: true}
-    //    })
-    //    .when('/searchpokemon', {
-    //        templateUrl: 'app/search/pokemon.html',
-    //        controller: 'SearchPokemonController',
-    //        access: {restricted: true}
-    //    })
-    //    .when('/searcharea', {
-    //        templateUrl: 'app/search/searchArea.html',
-    //        controller: 'SearchAreaController',
-    //        access: {restricted: true}
-    //    });
-    //
-    //$routeProvider.otherwise('/login');
-    //
-    //$locationProvider.html5Mode(true);
-
-//}]);

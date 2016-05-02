@@ -1,10 +1,15 @@
-angular.module('PokemonService', []).factory('Pokemon', ['Resource', 'baseApiUrl', function($resource, baseApiUrl){
+angular.module('PokemonService', []).factory('Pokemon', ['Resource', 'baseApiUrl', 'Auth', function($resource, baseApiUrl, Auth){
   return {
     get: function(params) {
       return $resource(baseApiUrl + 'pokemon').get(params);
     },
     getOne: function(name){
       return $resource(baseApiUrl + 'pokemon/'+name).get();
+    },
+    getMyPokemon: function(){
+      var user = Auth.currentUser();
+      console.log(user);
+      return $resource(baseApiUrl + 'user/'+user._id+'/pokemon/').query();
     }
     //,
     //addArea: function(pokemon,area) {
