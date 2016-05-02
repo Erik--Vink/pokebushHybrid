@@ -5,46 +5,65 @@ searchController.controller('SearchController', function($scope) {
 });
 
 searchController.controller('PokemonSearchController', ['$scope', '$state', 'Pokemon', '$timeout', function($scope, $state, Pokemon, $timeout){
-  $scope.params = {
-    "page" : 0,
-    "limit": 20,
-    "types": [],
-    "q": ""
-  };
 
-  var nextPage = "";
+  $scope.morePokemonsCanBeLoaded = false;
+  $scope.pokemons = [];
 
+  var nextPageParams = "";
   var expr = /(\w+)\=(\d+|\w+)/g;
 
   var getPokemons = function(){
-    Pokemon.get($scope.params).$promise.then(function(data){
-      $scope.pokemons = data.result;
-      if(data.next){
-        data.next.match
-      }
-      nextPage = data.next; // /api/pokemon/?limit ...
-    });
-  };
-
-  $scope.filterPokemons = function(){
-      $timeout(function(){
-        getPokemons();
-      }, 1000);
-  };
-
-  $scope.loadNextPage = function(){
-
-
-
-    Pokemon.get($scope.params).$promise.then(function(data){
+    Pokemon.get(nextPageParams).$promise.then(function(data){
+      console.log(data);
       data.result.forEach(function(pokemon){
         $scope.pokemons.push(pokemon);
       });
+      if(data.next){// If the pokemon request contains a 'next' url
+        //Parse the url to a params object
+        var params = {};
+        var regexParams = data.next.match(expr);
+        regexParams.forEach(function(param){
+          var parts = param.split('=');
+          if(/^\d+$/.test(parts[1])){//If it is a number, parse the string to an int
+            parts[1] = parseInt(parts[1]);
+          }
+          params[parts[0]] = parts[1];
+        });
 
-      nextPage = data.next; // /api/pokemon/?limit ...
+        nextPageParams = params;
+        $scope.morePokemonsCanBeLoaded = true
+      }
+      else{
+        nextPageParams = "";
+        $scope.morePokemonsCanBeLoaded = false
+      }
+      $scope.$broadcast('scroll.infiniteScrollComplete');
     });
+  };
+  var timeout;
 
+  $scope.filterPokemons = function(){
+    if (timeout != null) {
+      $timeout.cancel(timeout);
+    }
+    timeout = $timeout(function() {
+      nextPageParams = {
+        "q": $scope.params.q
+      };
+      $scope.pokemons = [];
+      getPokemons();
+    }, 500);
   };
 
-  getPokemons();
+  $scope.loadNextPage = function(){
+    if($scope.morePokemonsCanBeLoaded){//If a link to the next result was provided
+      getPokemons();
+    }
+  };
+
+  $scope.$on('$stateChangeSuccess', function() {
+    if($scope.pokemons.length <1){
+      getPokemons();
+    }
+  });
 }]);

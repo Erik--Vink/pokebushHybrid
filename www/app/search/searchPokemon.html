@@ -14,5 +14,10 @@
                 <i class="icon ion-chevron-right" style="max-height: 50px;"></i>
             </ion-item>
         </ion-list>
+        <ion-infinite-scroll
+          ng-if="morePokemonsCanBeLoaded"
+          on-infinite="loadNextPage()"
+          distance="1%">
+        </ion-infinite-scroll>
     </ion-content>
 </ion-view>

@@ -24,8 +24,8 @@ angular.module('CatchService', []).factory('Catch', ['$timeout', function ($time
     var min = minTimePercent/100;
     var add = (maxTimePercent - minTimePercent)/100;
     var all = (min+(Math.random()*add))*ms;
-    console.log(all);
-    console.log(all/60/1000);
+    //console.log(all);
+    //console.log(all/60/1000);
     return all;
   }
 
