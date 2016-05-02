@@ -1,0 +1,34 @@
+<ion-view title="Pokemon" hide-tabs='false' hide-back-button="false">
+    <ion-content class="bottom-margin-small" padding="true" has-tabs="true">
+      <div class="list card">
+
+        <div class="item">
+          <h2><strong>#{{pokemon.pokedexId}} {{pokemon.name}}</strong></h2>
+        </div>
+
+        <div class="item item-body">
+          <div class="img-container">
+            <img class="center" style="max-height: 100px;" ng-src="{{pokemon.imagePath}}">
+          </div>
+        </div>
+
+        <div class="item list-item-types center">
+          <div class="pokemon-type {{type.name}}" ng-repeat="type in pokemon.type">
+            {{type.name}}
+          </div>
+        </div>
+
+        <div class="item">
+          <h2><strong>Can be found at</strong></h2>
+        </div>
+
+        <div class="item item-icon-right" ng-repeat="area in pokemon.area" ui-sref="area({name:area.canonicalName, object:area})">
+          {{area.name}}
+          <i class="icon ion-chevron-right"></i>
+        </div>
+        <div class="item" ng-hide="pokemon.area.length > 0">
+          This pokemon can not be found yet.
+        </div>
+      </div>
+    </ion-content>
+</ion-view>

@@ -41,6 +41,13 @@ app.config(function($stateProvider, $urlRouterProvider){
       url: '/area',
       templateUrl: 'app/search/searchArea.html',
       authenticate: true
+    })
+    .state('pokemon', {
+      url: '/pokemon/:name',
+      templateUrl: 'app/pokemon/pokemon.html',
+      controller: 'PokemonController',
+      authenticate: true,
+      params: {'name': {}, 'object': {}}
     });
 
   $urlRouterProvider.otherwise('/login');
@@ -90,7 +97,7 @@ app.config(function($stateProvider, $urlRouterProvider){
     //        access: {restricted: true}
     //    })
     //    .when('/searchpokemon', {
-    //        templateUrl: 'app/search/searchPokemon.html',
+    //        templateUrl: 'app/search/pokemon.html',
     //        controller: 'SearchPokemonController',
     //        access: {restricted: true}
     //    })

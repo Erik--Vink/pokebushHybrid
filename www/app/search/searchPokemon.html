@@ -1,15 +1,17 @@
-<ion-view title="Search" hide-tabs='false' hide-back-button="true">
+<ion-view title="Search" hide-tabs='false' hide-back-button="true" ng-controller="PokemonSearchController">
     <ion-header-bar class="bar-subheader has-header">
         <label class="item item-input">
                 <i class="icon ion-search placeholder-icon"></i>
-                <input type="text" placeholder="Search" ng-model="search">
+                <input type="text" placeholder="Search" ng-model="params.q" ng-change="filterPokemons()">
         </label>
     </ion-header-bar>
-    <ion-content padding="true" class="has-header" has-tabs="true">
+    <ion-content padding="true" class="has-search-header" has-tabs="true">
         <ion-list>
-            <ion-item class="item-thumbnail-left" ng-repeat="pokemon in pokemons | filter:{name: search}">
-                <img ng-src="{{pokemon.imagePath}}">
-                {{pokemon.name}}
+            <ion-item class="item item-thumbnail-left item-icon-right item-small" collection-repeat="pokemon in pokemons" ui-sref="pokemon({name: pokemon.lowerName, object: pokemon })">
+                <img ng-src="{{pokemon.imagePath}}" class="list-item-image">
+                <h2><strong>#{{pokemon.pokedexId}}</strong></h2>
+                <p>{{pokemon.name}}</p>
+                <i class="icon ion-chevron-right" style="max-height: 50px;"></i>
             </ion-item>
         </ion-list>
     </ion-content>
