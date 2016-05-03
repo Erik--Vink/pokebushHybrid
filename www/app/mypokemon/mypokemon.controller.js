@@ -5,8 +5,11 @@ mypokemonModule.controller('MypokemonController', ['$scope', '$state' , 'Pokemon
   Pokemon.getMyPokemon().$promise.then(function(data){
     data.forEach(function(pokemon){
       $scope.myPokemon.push(pokemon);
+      console.log(pokemon);
+      console.log("mypokeys");
+      console.log($scope.myPokemon);
     });
-    console.log($scope.myPokemon);
+    console.log(data);
   });
 
 

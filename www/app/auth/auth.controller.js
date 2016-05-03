@@ -1,6 +1,11 @@
 var authControllers = angular.module('authCtrl',[]);
 
-authControllers.controller('AuthorizationController', ['$scope', 'Auth', '$state', function($scope, Auth, $state){
+authControllers.controller('AuthorizationController', ['$scope', 'Auth', '$state', '$ionicHistory' , function($scope, Auth, $state, $ionicHistory){
+
+  $scope.$on("$ionicView.enter", function () {
+    $ionicHistory.clearCache();
+    $ionicHistory.clearHistory();
+  });
 
   $scope.user = {};
 

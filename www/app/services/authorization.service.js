@@ -32,6 +32,7 @@ angular.module('AuthorizationService', []).factory('Auth', ['Resource', '$locati
 
   auth.logOut = function(){
     $window.localStorage.removeItem('x-access-token');
+    $http.defaults.headers.common['x-access-token']= undefined;
   };
 
   auth.signUp = function(user){
@@ -45,7 +46,7 @@ angular.module('AuthorizationService', []).factory('Auth', ['Resource', '$locati
 
   auth.getUserStatus = function() {
 
-    $resource(baseUrl + 'auth/user').get(function(user){
+    return $resource(baseUrl + 'auth/user').get(function(user){
       if(user){
         self.user = user;
       } else {
@@ -54,15 +55,6 @@ angular.module('AuthorizationService', []).factory('Auth', ['Resource', '$locati
     }, function(error){
       self.user = null;
     });
-
-    return $resource('auth/user', {}, {
-      get: {
-        method: 'GET',
-        isArray: false
-      }
-    });
-
-    //return $resource(baseUrl + 'auth/user').get();
 
   };
 

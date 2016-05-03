@@ -8,7 +8,6 @@ angular.module('PokemonService', []).factory('Pokemon', ['Resource', 'baseApiUrl
     },
     getMyPokemon: function(){
       var user = Auth.currentUser();
-      console.log(user);
       return $resource(baseApiUrl + 'user/'+user._id+'/pokemon/').query();
     }
     //,

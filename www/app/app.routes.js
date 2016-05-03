@@ -24,7 +24,12 @@ app.config(function($stateProvider, $urlRouterProvider){
       url:'/profile',
       controller: 'ProfileController',
       templateUrl: 'app/profile/profile.html',
-      authenticate: true
+      authenticate: true,
+      resolve: {
+        user: function(Auth) {
+          return Auth.getUserStatus();
+        }
+      }
     })
     .state('search', {
       url:'/search',

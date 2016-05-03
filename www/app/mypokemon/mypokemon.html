@@ -1,14 +1,14 @@
 <ion-view title="My pokemon" hide-tabs='false' hide-back-button="true">
   <ion-content has-tabs="true">
     <ion-list>
-      <ion-item class="item item-thumbnail-left item-icon-right item-small" collection-repeat="pokemon in myPokemon" ui-sref="pokemon({name: pokemon.pokemon.lowerName})">
+      <ion-item class="item item-thumbnail-left item-icon-right item-small" ng-repeat="pokemon in myPokemon" ui-sref="pokemon({name: pokemon.pokemon.lowerName})">
         <img ng-src="{{pokemon.pokemon.imagePath}}" class="list-item-image">
         <h2><strong>#{{pokemon.pokemon.pokedexId}}</strong></h2>
         <p>{{pokemon.pokemon.name}}</p>
         <span class="badge badge-dark" style="right:50px;">{{pokemon.amount}}</span>
         <i class="icon ion-chevron-right" style="max-height: 50px;"></i>
       </ion-item>
-      <ion-item class="item-body" ng-hide="myPokemon.length >1">
+      <ion-item class="item-body" ng-hide="myPokemon.length > 0">
         You haven't caught any pokemon yet.
       </ion-item>
     </ion-list>

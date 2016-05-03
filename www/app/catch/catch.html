@@ -1,4 +1,4 @@
-<ion-view hide-tabs='false' hide-back-button="false">
+<ion-view hide-tabs='false' hide-back-button="true">
   <ion-nav-title>
     A wild {{pokemon.name}} appeared!
   </ion-nav-title>
@@ -22,8 +22,8 @@
       </div>
 
       <div class="item">
-        <button on-tap="catch()" class="button button-block button-assertive">Catch!</button>
-        <button on-tap="leave()" class="button button-block button-dark">No thanks.</button>
+        <button on-touch="catch()" class="button button-block button-assertive">Catch!</button>
+        <button on-touch="leave()" class="button button-block button-dark">No thanks.</button>
         <!--<h2><strong>Catch!</strong></h2>-->
         <!--<h2><strong>No thanks</strong></h2>-->
       </div>
