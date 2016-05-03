@@ -13,10 +13,10 @@ catchController.controller('CatchController', ['$scope','Pokemon', '$stateParams
 
   $scope.catch = function(){
     Catch.catch();
-    $state.go($rootScope.previousState.name);
+    $state.transitionTo($rootScope.previousState.name, {}, {reload:true});
   };
   $scope.leave = function(){
-    $state.go($rootScope.previousState.name);
+    $state.transitionTo($rootScope.previousState.name, {}, {reload:true});
   };
 
 }]);

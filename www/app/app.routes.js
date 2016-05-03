@@ -59,6 +59,7 @@ app.config(function($stateProvider, $urlRouterProvider){
       templateUrl: 'app/catch/catch.html',
       controller: 'CatchController',
       authenticate: true,
+      cache:false,
       params: {'name': {}, 'object': null}
     })
     .state('area', {

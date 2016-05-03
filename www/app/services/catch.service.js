@@ -23,6 +23,7 @@ angular.module('CatchService', []).factory('Catch', ['$state', '$timeout', funct
 
   function appear() {
     target = _.sample(curr.pokemon);
+    console.log(target);
     $state.go('catch', {object: target});
   }
 
