@@ -1,7 +1,6 @@
 var catchController = angular.module('catchCtrl',[]);
 
-catchController.controller('CatchController', ['$scope','Pokemon', '$stateParams', 'Catch', '$state', function($scope, Pokemon, $stateParams, Catch, $state){
-  console.log($stateParams.object);
+catchController.controller('CatchController', ['$scope','Pokemon', '$stateParams', 'Catch', '$state', '$rootScope', function($scope, Pokemon, $stateParams, Catch, $state, $rootScope){
   if($stateParams.object){
     $scope.pokemon = $stateParams.object;
   }
@@ -13,11 +12,15 @@ catchController.controller('CatchController', ['$scope','Pokemon', '$stateParams
 
   $scope.catch = function(){
     Catch.catch();
-    Catch.reset();
     $state.go('bush');
-  }
+  };
   $scope.leave = function(){
-    Catch.reset();
     $state.go('bush');
-  }
+  };
+
+
+  $rootScope.$on('$stateChangeStart',
+    function(event, toState, toParams, fromState, fromParams){
+      if(fromState.name == "catch") { Catch.reset(); }
+    });
 }]);
