@@ -28,19 +28,23 @@ angular.module('CatchService', []).factory('Catch', ['$state', '$timeout', funct
 
   function zone(marker){
     if(target != null) {
-      $timeout.cancel(time);
+      console.log("Cancel (Catching in progress)");
+      stopTimers();
     } else {
+      console.log("Start");
       time.push($timeout(appear, rnTime()));
 
       if(curr == null && marker == null) {
+        console.log("Cancel (No zone present)");
         stopTimers();
-      } else {
-        curr = marker;
       }
     }
+    console.log("Setting current marker");
+    curr = marker;
   }
 
   function reset(){
+    console.log("Resetting");
     stopTimers();
     target = null;
     zone(curr);
