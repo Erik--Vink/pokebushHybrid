@@ -51,26 +51,23 @@ angular.module('MapsService', []).factory('Map', ['$cordovaGeolocation', 'Marker
           });
         }
 
-        closest(200, function (closest) {
+        closest(100000, function (closest) {
           Catch.zone(closest);
         });
       });
   }
 
-  var calls = 0;
   function closest(range, callback){
     Marker.getMarkers().then(function(markers){
-      var closestDistance = null;
-      //console.log(markers);
       var closest = _.reduce(markers, function (collector, marker) {
-        var currentDistance = dist(currentPosMarker.position.lat(), currentPosMarker.position.lng(), marker.lat, marker.long);
-        if(collector == null || currentDistance < closestDistance) {
-          closestDistance = currentDistance;
-          return marker;
+        var distance = dist(currentPosMarker.position.lat(), currentPosMarker.position.lng(), marker.lat, marker.long);
+        if(collector == null || distance < collector.distance) {
+          return {marker: marker, distance: distance};
         } else { return collector; }
       }, null);
-      if(closestDistance <= range) {
-        callback(closest);
+      if(closest.distance <= range) {
+        console.log(closest.marker);
+        callback(closest.marker);
       } else {
         callback(null);
       }
@@ -103,7 +100,7 @@ angular.module('MapsService', []).factory('Map', ['$cordovaGeolocation', 'Marker
           position: markerPos
         });
 
-        var infoWindowContent = "<h4>" + record.name + "</h4>";
+        var infoWindowContent = "<div ui-sref=\"area({name:" + record.canonicalName + "})\"><h4>" + record.name + "</h4></div>";
 
         addInfoWindow(marker, infoWindowContent, record);
       }

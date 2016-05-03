@@ -1,0 +1,32 @@
+<ion-view hide-tabs='false' hide-back-button="false">
+  <ion-nav-title>
+    A wild {{pokemon.name}} appeared!
+  </ion-nav-title>
+  <ion-content has-tabs="true">
+    <div class="list card" ng-show="pokemon">
+
+      <div class="item">
+        <h2><strong>#{{pokemon.pokedexId}} {{pokemon.name}}</strong></h2>
+      </div>
+
+      <div class="item item-body">
+        <div class="img-container">
+          <img class="center" style="max-height: 100px;" ng-src="{{pokemon.imagePath}}">
+        </div>
+      </div>
+
+      <div class="item list-item-types center">
+        <div class="pokemon-type {{type.name}}" ng-repeat="type in pokemon.type">
+          {{type.name}}
+        </div>
+      </div>
+
+      <div class="item">
+        <button on-tap="catch()" class="button button-block button-assertive">Catch!</button>
+        <button on-tap="leave()" class="button button-block button-dark">No thanks.</button>
+        <!--<h2><strong>Catch!</strong></h2>-->
+        <!--<h2><strong>No thanks</strong></h2>-->
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

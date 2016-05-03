@@ -20,7 +20,8 @@ var app = angular.module('app', [
   'areaCtrl',
   'app.directives',
   'alertDirective',
-  'CatchService'
+  'CatchService',
+  'catchCtrl'
 ]);
 
 app.constant('baseApiUrl', "https://powerful-depths-54671.herokuapp.com/api/");
