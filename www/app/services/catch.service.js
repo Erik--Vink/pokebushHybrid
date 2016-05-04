@@ -65,7 +65,9 @@ angular.module('CatchService', []).factory('Catch', ['$state', '$timeout', funct
     if(!target.rarity){
       if(Math.random() <= defaultRarity){
         console.log("Caught!");
+        return true;
       }
+      return false;
     }
   }
 }]);
