@@ -12,9 +12,14 @@ catchController.controller('CatchController', ['$scope','Pokemon', '$stateParams
   }
 
   $scope.catch = function(){
-    Catch.catch();
-    $state.transitionTo($rootScope.previousState.name, {}, {reload:true});
+    if(Catch.catch()){
+      $scope.catchMessage = "Gotcha!\n" + $scope.pokemon.name + " was caught.";
+    }
+    else{
+      $scope.catchMessage = "Aargh, almost had it!";
+    }
   };
+
   $scope.leave = function(){
     $state.transitionTo($rootScope.previousState.name, {}, {reload:true});
   };
