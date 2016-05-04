@@ -1,4 +1,4 @@
-angular.module('CatchService', []).factory('Catch', ['$state', '$timeout', function ($state, $timeout) {
+angular.module('CatchService', []).factory('Catch', ['$state', '$timeout', 'baseApiUrl', '$http', 'Auth', function ($state, $timeout, baseApiUrl, $http, Auth) {
   var curr = null;
   var time = [];
   var target = null;
@@ -61,13 +61,23 @@ angular.module('CatchService', []).factory('Catch', ['$state', '$timeout', funct
     time.length = 0;
   }
 
-  function _catch(){
+  function _catch(user){
     if(!target.rarity){
       if(Math.random() <= defaultRarity){
-        console.log("Caught!");
+        on_catch();
         return true;
       }
       return false;
     }
   }
+
+  function on_catch(){
+    Auth.getUserStatus().$promise.then(function(user){
+      $http({
+        method: 'PUT',
+        url: baseApiUrl + 'user/' + user._id + '/pokemon/' + target.lowerName
+      });
+    });
+  }
+  
 }]);

@@ -14,8 +14,7 @@ catchController.controller('CatchController', ['$scope','Pokemon', '$stateParams
   $scope.catch = function(){
     if(Catch.catch()){
       $scope.catchMessage = "Gotcha!\n" + $scope.pokemon.name + " was caught.";
-    }
-    else{
+    } else {
       $scope.catchMessage = "Aargh, almost had it!";
     }
   };
