@@ -43,5 +43,8 @@
   </platform>
   <!--<gap:plugin name="com.google.cordova.admob" source="plugins.cordova.io" />-->
   <gap:plugin name="org.apache.cordova.geolocation" spec="0.3.10" source="pgb" />
+  <gap:plugin name="cordova-plugin-whitelist" />
+  <access origin="*" subdomains="true" />
+
   <!--<allow-navigation href="*" />-->
 </widget>
