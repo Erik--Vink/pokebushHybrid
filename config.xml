@@ -8,7 +8,9 @@
       Your Name Here
     </author>
   <content src="index.html"/>
-  <access origin="*"/>
+  <allow-intent href="*" />
+  <allow-navigation href="*" />
+  <access origin="*" subdomains="true" />
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
@@ -34,10 +36,5 @@
     <splash src="resources/android/splash/drawable-port-xxhdpi-screen.png" density="port-xxhdpi"/>
     <splash src="resources/android/splash/drawable-port-xxxhdpi-screen.png" density="port-xxxhdpi"/>
   </platform>
-  <!--<gap:plugin name="com.google.cordova.admob" source="plugins.cordova.io" />-->
   <gap:plugin name="org.apache.cordova.geolocation" spec="0.3.10" source="pgb" />
-  <!--<gap:plugin name="cordova-plugin-whitelist" />-->
-  <access origin="*" subdomains="true" />
-
-  <!--<allow-navigation href="*" />-->
 </widget>

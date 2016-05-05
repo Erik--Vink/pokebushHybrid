@@ -46,7 +46,9 @@
       Your Name Here
     </author>
     <content src="index.html" />
-    <access origin="*" />
+    <allow-intent href="*" />
+    <allow-navigation href="*" />
+    <access origin="*" subdomains="true" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
@@ -55,5 +57,4 @@
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
     <gap:plugin name="org.apache.cordova.geolocation" source="pgb" spec="0.3.10" />
-    <access origin="*" subdomains="true" />
 </widget>
