@@ -19,6 +19,7 @@ app.config(function($stateProvider, $urlRouterProvider){
       controller: 'MypokemonController',
       templateUrl: 'app/mypokemon/mypokemon.html',
       authenticate: true,
+      cache:false,
       resolve: {
         myPokemon: function(Auth, Pokemon) {
           return Auth.getUserStatus().$promise.then(function(user){
