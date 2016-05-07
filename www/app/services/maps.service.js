@@ -2,6 +2,7 @@ angular.module('MapsService', []).factory('Map', ['$cordovaGeolocation', 'Marker
   var map = null;
   var currentPosMarker;
   var rad = Math.PI / 180;
+  var range = 200;
 
   function initMap() {
 
@@ -51,7 +52,7 @@ angular.module('MapsService', []).factory('Map', ['$cordovaGeolocation', 'Marker
           });
         }
 
-        closest(100000, function (closest) {
+        closest(range, function (closest) {
           Catch.zone(closest);
         });
       });

@@ -2,7 +2,7 @@ angular.module('CatchService', []).factory('Catch', ['$state', '$timeout', 'base
   var curr = null;
   var time = [];
   var target = null;
-  var baseTimeMinutes = 0.1;
+  var baseTimeMinutes = 3;
   var minTimePercent = 80;
   var maxTimePercent = 160;
   var defaultRarity = 0.5;
@@ -61,7 +61,7 @@ angular.module('CatchService', []).factory('Catch', ['$state', '$timeout', 'base
     time.length = 0;
   }
 
-  function _catch(user){
+  function _catch(){
     if(!target.rarity){
       if(Math.random() <= defaultRarity){
         on_catch();
@@ -79,5 +79,5 @@ angular.module('CatchService', []).factory('Catch', ['$state', '$timeout', 'base
       });
     });
   }
-  
+
 }]);
