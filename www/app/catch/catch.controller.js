@@ -1,6 +1,6 @@
 var catchController = angular.module('catchCtrl',[]);
 
-catchController.controller('CatchController', ['$scope','Pokemon', '$stateParams', 'Catch', '$state', '$rootScope', function($scope, Pokemon, $stateParams, Catch, $state, $rootScope){
+catchController.controller('CatchController', ['$scope','Pokemon', '$stateParams', 'Catch', '$state', '$rootScope', '$cordovaVibration', function($scope, Pokemon, $stateParams, Catch, $state, $rootScope, $cordovaVibration){
 
   if($stateParams.object){
     $scope.pokemon = $stateParams.object;
@@ -20,7 +20,19 @@ catchController.controller('CatchController', ['$scope','Pokemon', '$stateParams
   };
 
   $scope.leave = function(){
-    $state.transitionTo($rootScope.previousState.name, {}, {reload:true});
+    if($rootScope.previousState.name == 'pokemon'){
+      $state.transitionTo("search.pokemon");
+    }
+    else if($rootScope.previousState.name == 'area'){
+      $state.transitionTo("search.area");
+    }
+    else{
+      $state.transitionTo($rootScope.previousState.name, {}, {reload:true});
+    }
   };
+
+  $scope.$on('$ionicView.beforeEnter', function() {
+    $cordovaVibration.vibrate(100);
+  });
 
 }]);

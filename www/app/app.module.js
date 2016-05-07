@@ -65,7 +65,6 @@ app.run(function ($ionicPlatform, $rootScope, $location, Auth, $http, $window, $
 
         //Reset the timers if the previous state was 'Catch'
         if(fromState.name == 'catch'){
-          console.log("from catch");
           Catch.reset();
         }
       }
