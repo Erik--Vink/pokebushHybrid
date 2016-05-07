@@ -23,6 +23,7 @@
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
+  <feature name="http://api.phonegap.com/1.0/geolocation"/>
   <platform name="android">
     <icon src="resources/icon.png" />
     <splash src="resources/android/splash/drawable-land-ldpi-screen.png" density="land-ldpi"/>
