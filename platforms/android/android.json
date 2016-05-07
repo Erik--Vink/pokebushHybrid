@@ -23,6 +23,10 @@
                         {
                             "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Vibration\"><param name=\"android-package\" value=\"org.apache.cordova.vibration.Vibration\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -36,6 +40,12 @@
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
+                            "count": 1
+                        }
+                    ],
+                    "/manifest": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.VIBRATE\" />",
                             "count": 1
                         }
                     ]
@@ -58,6 +68,9 @@
         },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.ionicframework.pokebushhybrid934950"
+        },
+        "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "nl.avans.mbd1.s2063041"
         }
     },
     "dependent_plugins": {},
@@ -87,6 +100,14 @@
             "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
             "id": "cordova-plugin-geolocation.PositionError",
             "runs": true
+        },
+        {
+            "file": "plugins/cordova-plugin-vibration/www/vibration.js",
+            "id": "cordova-plugin-vibration.notification",
+            "merges": [
+                "navigator.notification",
+                "navigator"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -94,6 +115,7 @@
         "cordova-plugin-device": "1.1.0",
         "cordova-plugin-compat": "1.0.0",
         "cordova-plugin-geolocation": "2.2.0",
-        "cordova-plugin-whitelist": "1.2.3-dev"
+        "cordova-plugin-whitelist": "1.2.3-dev",
+        "cordova-plugin-vibration": "2.1.1"
     }
 }

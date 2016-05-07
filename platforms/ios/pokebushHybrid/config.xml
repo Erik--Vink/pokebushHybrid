@@ -38,6 +38,9 @@
     <feature name="Geolocation">
         <param name="ios-package" value="CDVLocation" />
     </feature>
+    <feature name="Vibration">
+        <param name="ios-package" value="CDVVibration" />
+    </feature>
     <name>pokebushHybrid</name>
     <description>
         An Ionic Framework and Cordova project.
@@ -56,5 +59,6 @@
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
-    <gap:plugin name="org.apache.cordova.geolocation" source="pgb" spec="0.3.10" />
+    <gap:plugin name="cordova-plugin-geolocation" source="pgb" />
+    <gap:plugin name="cordova-plugin-vibration" source="pgb" />
 </widget>
