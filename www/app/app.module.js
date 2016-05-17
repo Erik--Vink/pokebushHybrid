@@ -49,9 +49,6 @@ app.run(function ($ionicPlatform, $rootScope, $location, Auth, $http, $window, $
   //  //navigator.splashscreen.hide();
   //});
 
-  $timeout(function() {
-    $state.go('login');
-  }, 5000);
 
   $rootScope.$on("$stateChangeStart",
     function (event, toState, toParams, fromState, fromParams) {

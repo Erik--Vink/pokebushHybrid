@@ -36,6 +36,7 @@ app.config(function($stateProvider, $urlRouterProvider){
       resolve: {
         user: function(Auth) {
           return Auth.getUserStatus();
+
         }
       }
     })
