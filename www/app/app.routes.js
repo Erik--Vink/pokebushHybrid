@@ -1,20 +1,27 @@
 var app = angular.module('appRoutes', []);
 
-app.config(function($stateProvider, $urlRouterProvider){
+app.config(function($ionicConfigProvider, $stateProvider, $urlRouterProvider){
+
+  $ionicConfigProvider.views.transition('platform');
 
   $stateProvider
-    .state('login', {
+    .state('app', {
+      url: "/app",
+      abstract: true,
+      templateUrl: "app/menu/menu.html"
+    })
+    .state('app.login', {
       url:'/login',
       controller: 'AuthorizationController',
       templateUrl: 'app/auth/login.html'
     })
-    .state('bush', {
+    .state('app.bush', {
       url:'/bush',
       controller: 'BushController',
       templateUrl: 'app/bush/bush.html',
       authenticate: true
     })
-    .state('mypokemon', {
+    .state('app.mypokemon', {
       url:'/mypokemon',
       controller: 'MypokemonController',
       templateUrl: 'app/mypokemon/mypokemon.html',
@@ -28,7 +35,7 @@ app.config(function($stateProvider, $urlRouterProvider){
         }
       }
     })
-    .state('profile', {
+    .state('app.profile', {
       url:'/profile',
       controller: 'ProfileController',
       templateUrl: 'app/profile/profile.html',
@@ -40,30 +47,31 @@ app.config(function($stateProvider, $urlRouterProvider){
         }
       }
     })
-    .state('search', {
+    .state('app.search', {
       url:'/search',
       templateUrl: 'app/search/search.html',
       controller: 'SearchController',
+      abstract: true,
       authenticate: true
     })
-    .state('search.pokemon', {
+    .state('app.search.pokemon', {
       url: '/pokemon',
       templateUrl: 'app/search/searchPokemon.html',
       authenticate: true
     })
-    .state('search.area', {
+    .state('app.search.area', {
       url: '/area',
       templateUrl: 'app/search/searchArea.html',
       authenticate: true
     })
-    .state('pokemon', {
+    .state('app.pokemon', {
       url: '/pokemon/:name',
       templateUrl: 'app/pokemon/pokemon.html',
       controller: 'PokemonController',
       authenticate: true,
       params: {'name': {}, 'object': null}
     })
-    .state('catch', {
+    .state('app.catch', {
       url: '/catch/:name',
       templateUrl: 'app/catch/catch.html',
       controller: 'CatchController',
@@ -71,7 +79,7 @@ app.config(function($stateProvider, $urlRouterProvider){
       cache:false,
       params: {'name': {}, 'object': null}
     })
-    .state('area', {
+    .state('app.area', {
       url: '/area/:name',
       templateUrl: 'app/area/area.html',
       controller: 'AreaController',
@@ -79,6 +87,6 @@ app.config(function($stateProvider, $urlRouterProvider){
       params: {'name': {}, 'object': null}
     });
 
-  $urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('/app/login');
 
 });

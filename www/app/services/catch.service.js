@@ -23,29 +23,23 @@ angular.module('CatchService', []).factory('Catch', ['$state', '$timeout', 'base
 
   function appear() {
     target = _.sample(curr.pokemon);
-    console.log(target);
     $state.go('catch', {object: target});
   }
 
   function zone(marker){
     if(target != null) {
-      console.log("Cancel (Catching in progress)");
       stopTimers();
     } else {
-      console.log("Start");
       time.push($timeout(appear, rnTime()));
 
       if(curr == null && marker == null) {
-        console.log("Cancel (No zone present)");
         stopTimers();
       }
     }
-    console.log("Setting current marker");
     curr = marker;
   }
 
   function reset(){
-    console.log("Resetting");
     stopTimers();
     target = null;
     zone(curr);
@@ -55,7 +49,6 @@ angular.module('CatchService', []).factory('Catch', ['$state', '$timeout', 'base
     var count = 0;
     _.forEach(time, function(out){
       count++;
-      console.log("Cancelling " + count + " timers");
       $timeout.cancel(out);
     });
     time.length = 0;

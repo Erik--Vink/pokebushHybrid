@@ -65,6 +65,11 @@ searchController.controller('PokemonSearchController', ['$scope', '$state', 'Pok
       getPokemons();
     }
   });
+
+  $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+    viewData.enableBack = true;
+  });
+
 }]);
 
 searchController.controller('AreaSearchController', ['$scope', '$state', 'Area', function($scope, $state, Area){

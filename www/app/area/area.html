@@ -10,7 +10,7 @@
             Catchable pokemon
         </div>
 
-        <div class="item item-small item-thumbnail-left item-icon-right" ng-repeat="pokemon in area.pokemon" ui-sref="pokemon({name: pokemon.lowerName})">
+        <div class="item item-small item-thumbnail-left item-icon-right" ng-repeat="pokemon in area.pokemon" ui-sref="app.pokemon({name: pokemon.lowerName})">
             <img ng-src="{{pokemon.imagePath}}" class="list-item-image">
             <h2><strong>#{{pokemon.pokedexId}}</strong></h2>
             <p>{{pokemon.name}}</p>

@@ -21,13 +21,13 @@ catchController.controller('CatchController', ['$scope','Pokemon', '$stateParams
 
   $scope.leave = function(){
     if($rootScope.previousState.name == 'pokemon'){
-      $state.transitionTo("search.pokemon");
+      $state.transitionTo("app.search.pokemon");
     }
     else if($rootScope.previousState.name == 'area'){
-      $state.transitionTo("search.area");
+      $state.transitionTo("app.search.area");
     }
     else{
-      $state.transitionTo($rootScope.previousState.name, {}, {reload:true});
+      $state.transitionTo("app."+$rootScope.previousState.name, {}, {reload:true});
     }
   };
 

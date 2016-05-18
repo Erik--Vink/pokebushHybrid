@@ -15,7 +15,7 @@ authControllers.controller('AuthorizationController', ['$scope', 'Auth', '$state
 
   $scope.logIn = function(){
     Auth.logIn($scope.user).$promise.then(function(data){
-      $state.transitionTo("bush");
+      $state.transitionTo("app.bush");
     },function(error){
       if(error.data.message){
         $scope.alert = { type: 'warning', msg: error.data.message };
@@ -23,14 +23,6 @@ authControllers.controller('AuthorizationController', ['$scope', 'Auth', '$state
       else{
         $scope.alert = { type: 'warning', msg: error.data.loginMessage };
       }
-    });
-  };
-
-  $scope.signUp = function(){
-    Auth.signUp($scope.user).$promise.then(function(data){
-      $location.path('bush');
-    },function(error){
-      $scope.error = error.data.signupMessage;
     });
   };
 

@@ -67,7 +67,6 @@ angular.module('MapsService', []).factory('Map', ['$cordovaGeolocation', 'Marker
         } else { return collector; }
       }, null);
       if(closest.distance <= range) {
-        console.log(closest.marker);
         callback(closest.marker);
       } else {
         callback(null);

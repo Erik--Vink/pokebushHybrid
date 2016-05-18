@@ -7,7 +7,7 @@
     </ion-header-bar>
     <ion-content padding="true" class="has-search-header" has-tabs="true">
         <ion-list>
-            <ion-item class="item item-thumbnail-left item-icon-right item-small" collection-repeat="pokemon in pokemons" ui-sref="pokemon({name: pokemon.lowerName, object: pokemon })">
+            <ion-item class="item item-thumbnail-left item-icon-right item-small" collection-repeat="pokemon in pokemons" ui-sref="app.pokemon({name: pokemon.lowerName, object: pokemon })">
                 <img ng-src="{{pokemon.imagePath}}" class="list-item-image">
                 <h2><strong>#{{pokemon.pokedexId}}</strong></h2>
                 <p>{{pokemon.name}}</p>

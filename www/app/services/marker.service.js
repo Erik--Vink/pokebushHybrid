@@ -7,7 +7,6 @@ angular.module('MarkerService', []).factory('Marker', ['Resource', 'baseApiUrl',
         markers = [];
         return Area.get().$promise.then(function(response){
           response.forEach(function(area){
-            console.log("push -> " + area.name);
             markers.push(area);
           });
           return markers;

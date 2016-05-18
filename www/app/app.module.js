@@ -68,7 +68,7 @@ app.run(function ($ionicPlatform, $rootScope, $location, Auth, $http, $window, $
       else{
         if (toState.authenticate  && !Auth.isLoggedIn()) {
           //redirect to the login page if the page requires authentication and no token exists.
-          $state.transitionTo("login");
+          $state.transitionTo("app.login");
           event.preventDefault();
         }
       }

@@ -11,4 +11,8 @@ pokemonController.controller('PokemonController', ['$scope','Pokemon', '$statePa
     });
   }
 
+  $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+    viewData.enableBack = true;
+  });
+
 }]);
