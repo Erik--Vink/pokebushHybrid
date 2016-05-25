@@ -1,4 +1,5 @@
-<ion-view title="Search" hide-tabs='false' hide-back-button="true" ng-controller="AreaSearchController">
+<ion-view hide-tabs='false' hide-back-button="true" ng-controller="AreaSearchController">
+  <ion-nav-title>Search</ion-nav-title>
   <ion-header-bar class="bar-subheader has-header">
     <label class="item item-input">
       <i class="icon ion-search placeholder-icon"></i>
@@ -7,7 +8,7 @@
   </ion-header-bar>
   <ion-content padding="true" class="has-search-header" has-tabs="true">
     <ion-list>
-      <ion-item class="item item-icon-right item-small" collection-repeat="area in areas| filter:searchTerm" ui-sref="app.area({name: area.canonicalName, object: area })">
+      <ion-item class="item item-icon-right item-small" ng-repeat="area in areas| filter:searchTerm" ui-sref="app.area({name: area.canonicalName, object: area })">
         <h2><strong>{{area.name}}</strong></h2>
         <i class="icon ion-chevron-right" style="max-height: 50px;"></i>
       </ion-item>
