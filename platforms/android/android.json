@@ -23,6 +23,10 @@
                         {
                             "xml": "<feature name=\"Vibration\"><param name=\"android-package\" value=\"org.apache.cordova.vibration.Vibration\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -64,6 +68,9 @@
         },
         "org.apache.cordova.geolocation": {
             "PACKAGE_NAME": "nl.avans.mbd1.s2063041"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "nl.avans.mbd1.s2063041"
         }
     },
     "dependent_plugins": {},
@@ -89,6 +96,14 @@
                 "navigator.notification",
                 "navigator"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+            "id": "cordova-plugin-inappbrowser.inappbrowser",
+            "clobbers": [
+                "cordova.InAppBrowser.open",
+                "window.open"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -96,6 +111,7 @@
         "cordova-plugin-splashscreen": "2.1.0",
         "org.apache.cordova.vibration": "0.3.13",
         "cordova-plugin-whitelist": "1.2.2",
-        "org.apache.cordova.geolocation": "0.3.12"
+        "org.apache.cordova.geolocation": "0.3.12",
+        "cordova-plugin-inappbrowser": "1.4.1-dev"
     }
 }
